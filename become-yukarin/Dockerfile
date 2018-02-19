@@ -20,10 +20,10 @@ RUN pip3 install matplotlib
 RUN pip3 install chainerui
 
 # installation of world4py
-RUN git clone https://github.com/yamachu/WORLD4py.git
-RUN cd WORLD4py
-RUN python3 setup.py install
-RUN cd ../ && rm -rf WORLD4py
+RUN git clone https://github.com/yamachu/WORLD4py.git && \
+    cd WORLD4py && \
+    python3 setup.py install && \
+    cd ../ && rm -rf WORLD4py
 
 # the default command that runs when docker container starts
 CMD echo "This is become-yukarin docker image..."
