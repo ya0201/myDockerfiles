@@ -25,18 +25,24 @@ RUN apt-get update && apt-get -y --no-install-recommends install python3.6-dev
 # installation of cupy and chainer
 RUN pip3.6 install cupy==4.0.0b3 chainer==4.0.0b3
 
-# RUN apt-get update -y && \
-#     apt-get install -y --no-install-recommends \
-#     python-dev \
-#     python-pip \
-#     python-wheel \
-#     python-setuptools && \
-#     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+# installation of requirements
+RUN pip3.6 install numpy \
+                   librosa \
+                   pysptk \
+                   pyworld \
+                   fastdtw \
+                   nnmnkwii \
+                   matplotlib \
+                   chainerui
 
-# RUN pip install cupy==4.0.0b3 chainer==4.0.0b3
+# installation of world4py
+RUN git clone https://github.com/yamachu/WORLD4py.git && \
+    cd WORLD4py && \
+    python3.6 setup.py install && \
+    cd ../ && rm -rf WORLD4py
 
-
-
+# the default command that runs when docker container starts
+CMD echo "This is become-yukarin docker image..."
 
 
 # FROM chainer/chainer:latest-python3
