@@ -9,6 +9,12 @@ WORKDIR /app
 # installation of git
 RUN apt-get update && apt-get -y install git
 
+# installation of python3.6
+RUN apt-get update && apt-get -y install software-properties-common && \
+    add-apt-repository ppa:jonathonf/python-3.6 && \
+    apt-get update && \
+    apt-get install -y python3.6
+
 # installation of requirements
 RUN pip3 install numpy
 RUN pip3 install librosa
