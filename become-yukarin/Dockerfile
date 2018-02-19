@@ -25,15 +25,15 @@ RUN apt-get update && apt-get -y --no-install-recommends install python3.6-dev
 # installation of cupy and chainer
 RUN pip3.6 install cupy==4.0.0b3 chainer==4.0.0b3
 
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends \
-    python-dev \
-    python-pip \
-    python-wheel \
-    python-setuptools && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+# RUN apt-get update -y && \
+#     apt-get install -y --no-install-recommends \
+#     python-dev \
+#     python-pip \
+#     python-wheel \
+#     python-setuptools && \
+#     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-RUN pip install cupy==4.0.0b3 chainer==4.0.0b3
+# RUN pip install cupy==4.0.0b3 chainer==4.0.0b3
 
 
 
