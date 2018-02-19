@@ -1,4 +1,4 @@
-FROM chainer/chainer:latest-python3
+FROM nvidia/cuda:8.0-cudnn6-devel
 MAINTAINER me <me@abc.com>
 
 # working directory
@@ -15,22 +15,64 @@ RUN apt-get update && apt-get -y install software-properties-common && \
     apt-get update && \
     apt-get install -y python3.6
 
-# installation of requirements
-RUN pip3 install numpy
-RUN pip3 install librosa
-RUN pip3 install pysptk
-RUN pip3 install pyworld
-RUN pip3 install fastdtw
-RUN pip3 install nnmnkwii
-RUN pip3 install matplotlib
-RUN pip3 install chainerui
+# installation of pip3.6
+RUN apt-get update && apt-get -y install curl && \
+    curl https://bootstrap.pypa.io/get-pip.py | python3.6
 
-# installation of world4py
-RUN git clone https://github.com/yamachu/WORLD4py.git && \
-    cd WORLD4py && \
-    python3 setup.py install && \
-    cd ../ && rm -rf WORLD4py
+# installation of python3.6-dev
+RUN apt-get update && apt-get -y --no-install-recommends install python3.6-dev
 
-# the default command that runs when docker container starts
-CMD echo "This is become-yukarin docker image..."
-# CMD ["python", "train.py"]
+# installation of cupy and chainer
+RUN pip3.6 install cupy==4.0.0b3 chainer==4.0.0b3
+
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends \
+    python-dev \
+    python-pip \
+    python-wheel \
+    python-setuptools && \
+    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+
+RUN pip install cupy==4.0.0b3 chainer==4.0.0b3
+
+
+
+
+
+# FROM chainer/chainer:latest-python3
+
+# # working directory
+# # mount application root directory on here (/app)
+# RUN mkdir /app
+# WORKDIR /app
+
+# # installation of git
+# RUN apt-get update && apt-get -y install git
+
+# # uninstallation of 
+
+# # installation of python3.6
+# RUN apt-get update && apt-get -y install software-properties-common && \
+#     add-apt-repository ppa:jonathonf/python-3.6 && \
+#     apt-get update && \
+#     apt-get install -y python3.6
+
+# # installation of requirements
+# RUN pip3 install numpy
+# RUN pip3 install librosa
+# RUN pip3 install pysptk
+# RUN pip3 install pyworld
+# RUN pip3 install fastdtw
+# RUN pip3 install nnmnkwii
+# RUN pip3 install matplotlib
+# RUN pip3 install chainerui
+
+# # installation of world4py
+# RUN git clone https://github.com/yamachu/WORLD4py.git && \
+#     cd WORLD4py && \
+#     python3 setup.py install && \
+#     cd ../ && rm -rf WORLD4py
+
+# # the default command that runs when docker container starts
+# CMD echo "This is become-yukarin docker image..."
+# # CMD ["python", "train.py"]
