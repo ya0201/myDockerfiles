@@ -7,7 +7,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # installation of git
-RUN apt-get -y install git
+RUN apt-get update && apt-get -y install git
 
 # installation of requirements
 RUN pip3 install numpy
