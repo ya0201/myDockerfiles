@@ -62,25 +62,30 @@ WORKDIR /app
 RUN apt-get update && apt-get -y install git
 
 # installation of python3.6
-# RUN apt-get update && apt-get -y install software-properties-common && \
-#     add-apt-repository ppa:jonathonf/python-3.6 && \
-#     apt-get update && \
-#     apt-get install -y python3.6
+RUN apt-get update && apt-get -y install software-properties-common && \
+    add-apt-repository ppa:jonathonf/python-3.6 && \
+    apt-get update && \
+    apt-get install -y python3.6 && \
+# installation of pip3.6
+    apt-get update && apt-get -y install curl && \
+    curl https://bootstrap.pypa.io/get-pip.py | python3.6 && \
+# installation of python3.6-dev
+    apt-get update && apt-get -y --no-install-recommends install python3.6-dev
 
 # installation of requirements
-RUN pip3 install numpy
-RUN pip3 install librosa
-RUN pip3 install pysptk
-RUN pip3 install pyworld
-RUN pip3 install fastdtw
-RUN pip3 install nnmnkwii
-RUN pip3 install matplotlib
-RUN pip3 install chainerui
+RUN pip3.6 install numpy
+RUN pip3.6 install librosa
+RUN pip3.6 install pysptk
+RUN pip3.6 install pyworld
+RUN pip3.6 install fastdtw
+RUN pip3.6 install nnmnkwii
+RUN pip3.6 install matplotlib
+RUN pip3.6 install chainerui
 
 # installation of world4py
 RUN git clone https://github.com/yamachu/WORLD4py.git && \
     cd WORLD4py && \
-    python3 setup.py install && \
+    python3.6 setup.py install && \
     cd ../ && rm -rf WORLD4py
 
 # the default command that runs when docker container starts
