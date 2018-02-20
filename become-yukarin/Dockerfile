@@ -6,6 +6,13 @@ MAINTAINER me <me@abc.com>
 RUN mkdir /app
 WORKDIR /app
 
+# set CUDA and cuDNN paths
+RUN echo -e "\n## CUDA and cuDNN paths"  >> ~/.bashrc && \
+    echo 'export PATH=/usr/local/cuda/bin:${PATH}' >> ~/.bashrc && \
+    echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}' >> ~/.bashrc && \
+    echo 'export CUDA_PATH=/usr/local/cuda' >> ~/.bashrc && \
+    source ~/.bashrc
+
 # installation of git
 RUN apt-get update && apt-get -y install git
 
@@ -23,7 +30,7 @@ RUN apt-get update && apt-get -y install curl && \
 RUN apt-get update && apt-get -y --no-install-recommends install python3.6-dev
 
 # installation of cupy and chainer
-RUN pip3.6 install cupy==4.0.0b3 chainer==4.0.0b3
+RUN CUDA_PATH=/usr/local/cuda pip3.6 install cupy==4.0.0b3 chainer==4.0.0b3
 
 # installation of requirements
 RUN pip3.6 install numpy \
