@@ -10,8 +10,7 @@ WORKDIR /app
 RUN echo -e "\n## CUDA and cuDNN paths"  >> ~/.bashrc && \
     echo 'export PATH=/usr/local/cuda/bin:${PATH}' >> ~/.bashrc && \
     echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}' >> ~/.bashrc && \
-    echo 'export CUDA_PATH=/usr/local/cuda' >> ~/.bashrc && \
-    source ~/.bashrc
+    echo 'export CUDA_PATH=/usr/local/cuda' >> ~/.bashrc
 
 # installation of git
 RUN apt-get update && apt-get -y install git
