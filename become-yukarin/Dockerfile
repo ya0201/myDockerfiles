@@ -58,8 +58,8 @@ FROM chainer/chainer:latest-python3
 RUN mkdir /app
 WORKDIR /app
 
-# installation of git
-RUN apt-get update && apt-get -y install git
+# installation of git, vim
+RUN apt-get update && apt-get -y install git vim
 
 # installation of python3.6
 RUN apt-get update && apt-get -y install software-properties-common && \
