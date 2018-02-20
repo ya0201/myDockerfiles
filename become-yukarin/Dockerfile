@@ -73,14 +73,23 @@ RUN apt-get update && apt-get -y install software-properties-common && \
     apt-get update && apt-get -y --no-install-recommends install python3.6-dev
 
 # installation of requirements
-RUN pip3.6 install numpy
-RUN pip3.6 install librosa
-RUN pip3.6 install pysptk
-RUN pip3.6 install pyworld
-RUN pip3.6 install fastdtw
-RUN pip3.6 install nnmnkwii
-RUN pip3.6 install matplotlib
-RUN pip3.6 install chainerui
+# RUN pip3.6 install numpy
+# RUN pip3.6 install librosa
+# RUN pip3.6 install pysptk
+# RUN pip3.6 install pyworld
+# RUN pip3.6 install fastdtw
+# RUN pip3.6 install nnmnkwii
+# RUN pip3.6 install matplotlib
+# RUN pip3.6 install chainerui
+RUN pip3.6 install numpy \
+                   cupy \
+                   librosa \
+                   pysptk \
+                   pyworld \
+                   fastdtw \
+                   nnmnkwii \
+                   matplotlib \
+                   chainerui
 
 # installation of world4py
 RUN git clone https://github.com/yamachu/WORLD4py.git && \
