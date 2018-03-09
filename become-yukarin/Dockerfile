@@ -72,6 +72,9 @@ RUN apt-get update && apt-get -y install software-properties-common && \
 # installation of python3.6-dev
     apt-get update && apt-get -y --no-install-recommends install python3.6-dev
 
+# installation of ffmpeg
+RUN apt-get update && apt-get -y install ffmpeg
+
 # installation of requirements
 # RUN pip3.6 install numpy
 # RUN pip3.6 install librosa
